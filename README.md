@@ -17,3 +17,11 @@
   
 
 - 프로젝트명 : 냉시피를 부탁해
+
+
+
+- 개발환경
+  - yarn
+  - express
+  - react
+  - MySQL
