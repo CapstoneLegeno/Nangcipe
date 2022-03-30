@@ -26,3 +26,12 @@
   - express
   - react
   - MySQL
+    - mysql
+    - mysql-client
+- 라이브러리
+  - frontend
+  - backend
+    - nodemon
+    - express
+    - express-generator
+    - 
