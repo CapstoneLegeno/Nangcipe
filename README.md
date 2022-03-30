@@ -30,6 +30,7 @@
     - mysql-client
 - 라이브러리
   - frontend
+    - 프로젝트 진행 중 설치하는 라이브러리 적기
   - backend
     - nodemon
     - express
