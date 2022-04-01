@@ -12,21 +12,21 @@ var apiRouter = require('./routes/api');
 
 var app = express();
 
-// DB 연결
-var con = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'seongwon9106',
-  database: 'test'
-});
 
-con.connect(function(err) {
+// DB 연결
+var config = require('./config.js');
+console.log(config);
+
+var connection = mysql.createConnection(config);
+
+connection.connect(function(err) {
   if (err) {
     console.log("db connect error");
     throw err;
+  } else {
+    console.log("success connecting");
   }
-  console.log("success connecting");
-})
+});
 
 
 // view engine setup
