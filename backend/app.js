@@ -14,17 +14,14 @@ var app = express();
 
 
 // DB 연결
-var config = require('./config.js');
+var config = require('./models/config.js');
 console.log(config);
 
-var connection = mysql.createConnection(config);
-
-connection.connect(function(err) {
+var connection = mysql.createConnection(config, function(err) {
   if (err) {
-    console.log("db connect error");
-    throw err;
+    console.log("db connect err");
   } else {
-    console.log("success connecting");
+    console.log("success connect");
   }
 });
 
