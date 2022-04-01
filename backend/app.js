@@ -4,10 +4,30 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var mysql = require('mysql');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
 
 var app = express();
+
+// DB 연결
+var con = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: 'seongwon9106',
+  database: 'test'
+});
+
+con.connect(function(err) {
+  if (err) {
+    console.log("db connect error");
+    throw err;
+  }
+  console.log("success connecting");
+})
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,6 +41,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api', apiRouter);
+
+app.set('port', process.env.PORT || 3000);
+
+app.get('/', (req, res) => {
+  res.send("Capston Legeno");
+});
+
+app.listen(app.get('port'), () => {
+  console.log(app.get('port') + "port open");
+});
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
