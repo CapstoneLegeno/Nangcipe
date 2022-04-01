@@ -13,13 +13,13 @@ var app = express();
 // MySQL 연결
 var modelController = require('./models/modelController');
 var conn = modelController.init();    // DB 초기화
-conn.connect((err) => {if (err) throw err});
 
-// conn.query('select * from test', (err, rows, fields) => {
-//   if (err) throw err;
-//   console.log("\n\nsuccess query");
-//   console.log("\n\ntest table : " + rows);
-// });
+// mysql query test
+conn.query('select * from test', (err, rows, fields) => {
+  if (err) throw err;
+  console.log("\n\nsuccess query");
+  console.log("\n\ntest table : " + rows[0].name);
+});
 
 
 
