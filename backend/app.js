@@ -15,11 +15,19 @@ var modelController = require('./models/modelController');
 var conn = modelController.init();    // DB 초기화
 
 // mysql query test
+var person;
 conn.query('select * from test', (err, rows, fields) => {
   if (err) throw err;
   console.log("\n\nsuccess query");
-  console.log("\n\ntest table : " + rows[0].name);
+  person = {
+    id: rows[0].id,
+    name: rows[0].name,
+  };
 });
+
+app.get('/api', (req, res) => {
+  res.send(person);
+})
 
 
 
