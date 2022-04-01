@@ -4,26 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var mysql = require('mysql');
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
 var app = express();
 
+// MySQL 연결
+var modelController = require('./models/modelController');
+var conn = modelController.init();    // DB 초기화
+conn.connect((err) => {if (err) throw err});
 
-// DB 연결
-var config = require('./models/config.js');
-console.log(config);
+// conn.query('select * from test', (err, rows, fields) => {
+//   if (err) throw err;
+//   console.log("\n\nsuccess query");
+//   console.log("\n\ntest table : " + rows);
+// });
 
-var connection = mysql.createConnection(config, function(err) {
-  if (err) {
-    console.log("db connect err");
-  } else {
-    console.log("success connect");
-  }
-});
 
 
 // view engine setup
@@ -47,7 +44,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(app.get('port'), () => {
-  console.log(app.get('port') + "port open");
+  console.log("\n\n" + app.get('port') + " port connect");
 });
 
 
