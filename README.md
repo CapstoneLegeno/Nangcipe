@@ -35,4 +35,4 @@
     - nodemon
     - express
     - express-generator
-    - mysql
+    - mysql2
