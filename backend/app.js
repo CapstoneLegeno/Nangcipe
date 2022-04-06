@@ -8,22 +8,20 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
+var mysql = require('mysql2');
+var config = require('./models/config');
+
 var app = express();
 
 // MySQL 연결
 var modelController = require('./models/modelController');
-var conn = modelController.init();    // DB 초기화
+var controller = new modelController.modelController();
+var conn = controller.init();         // DB 초기화
 
 // mysql query test
-var person;
-conn.query('select * from test', (err, rows, fields) => {
-  if (err) throw err;
-  console.log("\n\nsuccess query");
-  person = {
-    id: rows[0].id,
-    name: rows[0].name,
-  };
-});
+var person = controller.quetyTest(conn);
+// console.log(person);
+
 
 app.get('/api', (req, res) => {
   res.send(person);
@@ -48,11 +46,11 @@ app.use('/api', apiRouter);
 app.set('port', process.env.PORT || 3000);
 
 app.get('/', (req, res) => {
-  res.send("Capston Legeno");
+  res.send("ㄴㄴㄴㄴ");
 });
 
 app.listen(app.get('port'), () => {
-  console.log("\n\n" + app.get('port') + " port connect");
+  console.log("\n\n" + app.get('port') + " port connecting");
 });
 
 
