@@ -36,3 +36,5 @@
     - express
     - express-generator
     - mysql2
+    - lodash.clonedeep
+      - 객체복사를 위한 모듈
