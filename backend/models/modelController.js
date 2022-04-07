@@ -1,35 +1,42 @@
 // modelController.js
 
 // 사용할 DB
-var mysql = require('mysql2');
+const { reject } = require('lodash');
+const mysql = require('mysql2/promise');
 
 // DB config
-var config = require('./config');
-var cloneDeep = require('lodash/cloneDeep');
+const config = require('./config');
 
-exports.modelController = class {
-    test = {};
+class modelController {
+    static connection;
+    static pool;
+
     // connect db
-    init() {
-        var conn = mysql.createConnection(config, (err) => { if (err) throw err});
-        conn.connect((err) => { if (err) throw err });
-        return conn;
+    async init() {
+        try {
+            this.pool = mysql.createPool(config, (err) => { if (err) throw err });
+            this.connection = await this.pool.getConnection(async conn => conn);
+            this.connection.release();
+        } catch (err) {
+            throw err;
+        }
     }
 
     // query test
-    quetyTest(conn) {
-        conn.connect((err) => { if (err) throw err });
-        conn.query('select * from test', (err, rows, fields) => {
-            if (err) throw err;
-            var data = {
-                id: rows[0].id,
-                name: rows[0].name,
-            };
-            console.log(data);
-            this.test = cloneDeep(data);
-        });
-        conn.end();
-        return(this.test);
+    async quetyTest() {
+        this.connection = await this.pool.getConnection(async conn => conn);
+        try {
+            const [data] = await this.connection.query('SELECT * FROM TEST');
+            this.connection.release();
+            return data;
+        } catch (err) {
+            throw err;
+        }
     }
+    
+        
+    
 };
+
+exports.modelController = modelController;
 

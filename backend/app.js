@@ -16,12 +16,18 @@ var app = express();
 // MySQL 연결
 var modelController = require('./models/modelController');
 var controller = new modelController.modelController();
-var conn = controller.init();         // DB 초기화
+
+// DB 초기화
+controller.init();
 
 // mysql query test
-var person = controller.quetyTest(conn);
-// console.log(person);
+async function test() {
+  return await controller.quetyTest();
+}
 
+console.log("test : ", test);
+
+console.log("queryTest : ", controller.quetyTest());
 
 app.get('/api', (req, res) => {
   res.send(person);
