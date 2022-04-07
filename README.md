@@ -36,5 +36,5 @@
     - express
     - express-generator
     - mysql2
-    - lodash.clonedeep
-      - 객체복사를 위한 모듈
+    - mysql/promise
+      - 동기/비동기 처리를 위해서 promise 사용
