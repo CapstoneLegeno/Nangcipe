@@ -7,14 +7,13 @@ const controller = new modelController.modelController();
 controller.init();
 
 /* GET users listing. */
-
 router.get('/', (req, res, next) => {
-  res.send('Router');
+  res.send('API Router');
 });
 
 router.get('/test', async function(req, res, next) {
-  // res.send('1111');
-  res.send(await controller.queryTest());
+  res.json(await controller.queryTest());
+  next();
 });
 
 module.exports = router;

@@ -28,7 +28,7 @@ class modelController {
         this.connection = await this.pool.getConnection();
         try {
             const [data] = await this.connection.query('SELECT * FROM TEST');
-            return data[0].name;
+            return data;
         } catch (err) {
             throw err;
         } finally {

@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Capston Legeno Server' });
+  res.render('index', { title: 'Capston Legeno API Server' });
 });
 
 module.exports = router;
