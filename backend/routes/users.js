@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+
+const modelController = require('../models/modelController');
+const controller = new modelController.modelController();
+
+controller.init();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get('/', (req, res, next) => {
+  res.send("users");
+})
+
+// createUser
+router.get('/createUser', function(req, res, next) {
+  res.render('users/createUser', {});
 });
 
 module.exports = router;
