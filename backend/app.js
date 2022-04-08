@@ -8,9 +8,6 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 
-var mysql = require('mysql2');
-var config = require('./models/config');
-
 var app = express();
 
 // MySQL 연결
@@ -19,21 +16,6 @@ var controller = new modelController.modelController();
 
 // DB 초기화
 controller.init();
-
-// mysql query test
-async function test() {
-  return await controller.quetyTest();
-}
-
-console.log("test : ", test);
-
-console.log("queryTest : ", controller.quetyTest());
-
-app.get('/api', (req, res) => {
-  res.send(person);
-})
-
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,17 +32,9 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 
 app.set('port', process.env.PORT || 3000);
-
-app.get('/', (req, res) => {
-  res.send("ㄴㄴㄴㄴ");
-});
-
 app.listen(app.get('port'), () => {
   console.log("\n\n" + app.get('port') + " port connecting");
 });
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,8 +1,8 @@
 // modelController.js
 
 // 사용할 DB
-const { reject } = require('lodash');
 const mysql = require('mysql2/promise');
+const mysql2 = require('mysql2');
 
 // DB config
 const config = require('./config');
@@ -16,27 +16,26 @@ class modelController {
         try {
             this.pool = mysql.createPool(config, (err) => { if (err) throw err });
             this.connection = await this.pool.getConnection(async conn => conn);
-            this.connection.release();
         } catch (err) {
             throw err;
+        } finally {
+            this.connection.release();
         }
     }
 
     // query test
-    async quetyTest() {
-        this.connection = await this.pool.getConnection(async conn => conn);
+    async queryTest() {
+        this.connection = await this.pool.getConnection();
         try {
             const [data] = await this.connection.query('SELECT * FROM TEST');
-            this.connection.release();
-            return data;
+            return data[0].name;
         } catch (err) {
             throw err;
+        } finally {
+            this.connection.release();
         }
     }
-    
-        
-    
-};
+}
 
 exports.modelController = modelController;
 
