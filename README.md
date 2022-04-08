@@ -20,7 +20,7 @@
 
 
 
-- 개발환경
+- dev env
   - node.js
   - yarn
   - express
@@ -28,7 +28,7 @@
   - MySQL
     - mysql
     - mysql-client
-- 라이브러리
+- libraries
   - frontend
     - 프로젝트 진행 중 설치하는 라이브러리 모두 적기
   - backend
@@ -38,3 +38,7 @@
     - mysql2
     - mysql/promise
       - 동기/비동기 처리를 위해서 promise 사용
+- Modelling
+
+![Nangcipe](./Nangcipe.jpeg)
+
