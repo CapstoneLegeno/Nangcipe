@@ -22,35 +22,7 @@ html(lang="ko")
                 p --------------------------------------------
             div
                 button(class='ajaxsend') submit
-            a(href='/')
-                button home
+        a(href='/')
+            button home
         div(class='result')
-        script(src="")
-            document.querySelector('.ajaxsend').addEventListener('click', () => {
-                var id = document.forms[0].elements[0].value;
-                var password = document.forms[0].elements[1].value;
-                var name = document.forms[0].elements[2].value;
-                var inputData = {
-                    'id': id,
-                    'password': password,
-                    'name': name
-                };
-                ajax_send("http://localhost:3000/users/createUser");
-
-                function ajax_send(url, inputData) {
-                    var data = JSON.stringfy(inputData);
-                    var shr = new XMLHttpsRequest();
-                    xhr.open('POST', url);
-                    xhr.setRequestHeader('content-type', 'application/json');
-                    xhr.send(data);
-
-                    xhr.addEventListener('load', () => {
-                        var result = JSON.parse(xhr.responseText);
-                        if (result.result === 'fail') {
-                            document.querySelector('.result').innerHTML="동일한 사용자가 이미 존재합니다.";
-                        } else {
-                            document.querySelector('.result').innerHRML='회원가입 성공';
-                        }
-                    })
-                }
-            }
+        script(src='createUser.js')
