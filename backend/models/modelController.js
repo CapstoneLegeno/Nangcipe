@@ -36,16 +36,34 @@ class modelController {
         }
     }
 
-    async createUser(id, password, name) {
+    // 회원가입
+    // userInfo : 객체타입
+    async createUser(userInfo) {
         this.connection = await this.pool.getConnection();
-        const sql = "insert into users(id, password, name) values (?, ?)";
+        const sql = "insert into users set?";
         try {
-            await this.connection.query(sql, [id, password, name]);
+            await this.connection.query(sql, userInfo);
+            return true
         } catch (err) {
             throw err;
         } finally {
             this.connection.release();
         }
+        
+    }
+
+    // 회원 중복 체크
+    async checkUser(id) {
+        this.connection = await this.pool.getConnection();
+        const sql = "select id from users where id = ?";
+        this.connection.query(sql, id, (err, rows) => {
+            if (err) throw err;
+            if (rows.length) {
+                return false;
+            } else {
+                return true;
+            }
+        });
     }
 }
 
