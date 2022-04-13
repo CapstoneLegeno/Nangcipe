@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 
 // createUser
 router.get('/createUser', function(req, res, next) {
-  res.render('users/createUser.jade');
+  res.render('users/createUser');
 });
 
 router.post('/createUser', (req, res) => {
@@ -22,17 +22,16 @@ router.post('/createUser', (req, res) => {
   const name = req.body.name;
   let userInfo = {id:id, password:password, name:name};
 
-  const checkUser = controller.checkUser(id);       // 회원 중복 확인 변수 true => 중복있음
-  if (checkUser) {
+  const checkUser = controller.checkUser(id);       // 회원 중복 확인 변수 false => 중복있음
+  if (!checkUser) {
     res.json({'result':'fail'});
+  } else {
+    const checkCreate = controller.createUser(userInfo);
+    if (checkCreate) {
+      console.log('checkCreate : success');
+      res.json({'result':'ok'});
+    }
   }
-  // } else {
-  //   const checkCreate = controller.createUser(userInfo);
-  //   if (checkCreate) {
-  //     console.log('checkCreate : success');
-  //     res.json({'result':'ok'});
-  //   }
-  // }
 })
 
 module.exports = router;
