@@ -9,14 +9,12 @@ controller.init();
 /* GET users listing. */
 router.get('/', (req, res, next) => {
   res.send("users");
-  next();
 })
 
 
 // createUser
 router.get('/signUp', function(req, res, next) {
   res.render('users/signUp');
-  next();
 });
 
 router.post('/signUp', async (req, res) => {
@@ -36,13 +34,11 @@ router.post('/signUp', async (req, res) => {
       res.json({'result':'ok'});
     }
   }
-  next();
 })
 
-// createUser
+// login
 router.get('/login', function(req, res, next) {
   res.render('users/login');
-  next();
 });
 
 router.post('/login', async (req, res) => {
@@ -56,7 +52,6 @@ router.post('/login', async (req, res) => {
   } else {
     res.json({'result': 'false'});
   }
-  next();
 })
 
 
