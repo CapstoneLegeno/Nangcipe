@@ -1,0 +1,48 @@
+html(lang="ko")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title LogIn
+    body 
+        h1 LogIn
+        form
+            p id : 
+                input(type="text" name="id")
+            p password : 
+                input(type="password" name="password")
+        button(class='ajaxsend') submit
+        hr
+        a(href='/')
+            button home
+        hr
+        div(class='result')
+        script(type='text/javascript').
+            document.querySelector('.ajaxsend').addEventListener('click', () => {
+                const id = document.forms[0].elements[0].value;
+                const password = document.forms[0].elements[1].value;
+                const inputData = {
+                    id: id,
+                    password: password,
+                };
+                const url = "http://localhost:3000/users/logIn";
+                ajax_send(url, inputData);
+
+                function ajax_send(url, inputData) {
+                    var data = JSON.stringify(inputData);
+                    console.log(data);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader('content-type', 'application/json');
+                    xhr.send(data);
+                    xhr.addEventListener('load', () => {
+                        const result = JSON.parse(xhr.responseText);
+                        console.log("--------------------result : ", result);
+                        if (result.result === 'success') {
+                            document.querySelector('.result').innerHTML = "로그인 성공";
+                        } else {
+                            document.querySelector('.result').innerHRML = '로그인 실패';
+                        }
+                    });
+                }
+            });

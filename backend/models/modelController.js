@@ -57,15 +57,38 @@ class modelController {
     async checkUser(id) {
         console.log("----------START CHECKUSER----------");
         this.connection = await this.pool.getConnection();
-        const sql = "select id from users where id = ?";
-        this.connection.query(sql, id, (err, rows) => {
-            if (err) throw err;
-            if (rows.length) {              // 값이 있으면
-                return false;
-            } else {                        // 값이 없으면
+        const sql = "select id from users where id = " + id;
+        try {
+            const [data] = await this.connection.query(sql);
+            if (data.length) {
                 return true;
+            } else {
+                return false;
             }
-        });
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
+    }
+
+    // 로그인
+    async login(id, pw) {
+        console.log("----------START LOGIN----------");
+        this.connection = await this.pool.getConnection();
+        const sql = "select id, password from users where id = " + id + " and password = " + pw;
+        try {
+            const [data] = await this.connection.query(sql);
+            if (data.length) {
+                return true;            // 로그인 성공
+            } else {
+                return false;            // 로그인 실패
+            }
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
     }
 }
 
