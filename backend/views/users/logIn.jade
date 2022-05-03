@@ -39,9 +39,9 @@ html(lang="ko")
                         const result = JSON.parse(xhr.responseText);
                         console.log("--------------------result : ", result);
                         if (result.result === 'success') {
-                            document.querySelector('.result').innerHTML = "로그인 성공";
+                            alert("로그인 성공");
                         } else {
-                            document.querySelector('.result').innerHRML = '로그인 실패';
+                            alert("로그인 실패");
                         }
                     });
                 }
