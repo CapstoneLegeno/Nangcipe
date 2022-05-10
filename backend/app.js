@@ -11,8 +11,8 @@ const apiRouter = require('./routes/api');
 const app = express();
 
 // MySQL 연결
-const modelController = require('./models/modelController');
-const controller = new modelController.modelController();
+const UserController = require('./models/UserController');
+const controller = new UserController.UserController();
 
 // DB 초기화
 controller.init();

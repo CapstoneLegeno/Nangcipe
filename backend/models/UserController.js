@@ -1,4 +1,4 @@
-// modelController.js
+// UserController.js
 
 // 사용할 DB
 const mysql = require('mysql2/promise');
@@ -7,7 +7,7 @@ const mysql2 = require('mysql2');
 // DB config
 const config = require('./config');
 
-class modelController {
+class UserController {
     static connection;
     static pool;
 
@@ -41,7 +41,7 @@ class modelController {
     async createUser(userInfo) {
         console.log("----------STRAT CREATEUSER----------");
         this.connection = await this.pool.getConnection();
-        const sql = "insert into users set?";
+        const sql = 'insert into users set?';
         try {
             await this.connection.query(sql, userInfo);
             return true
@@ -57,7 +57,7 @@ class modelController {
     async checkUser(id) {
         console.log("----------START CHECKUSER----------");
         this.connection = await this.pool.getConnection();
-        const sql = "select id from users where id = " + id;
+        const sql = "select id from users where id = " + "'" + id + "'";
         try {
             const [data] = await this.connection.query(sql);
             if (data.length) {
@@ -76,7 +76,7 @@ class modelController {
     async login(id, pw) {
         console.log("----------START LOGIN----------");
         this.connection = await this.pool.getConnection();
-        const sql = "select id, password from users where id = " + id + " and password = " + pw;
+        const sql = "select id, password from users where id = " + "'" + id + "'" + ' and password = ' + "'" + pw + "'";
         try {
             const [data] = await this.connection.query(sql);
             if (data.length) {

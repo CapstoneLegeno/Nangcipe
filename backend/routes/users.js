@@ -3,8 +3,8 @@ const hashPassword = require('../algirithm/hash').hashPassword;
 const express = require('express');
 const router = express.Router();
 
-const modelController = require('../models/modelController');
-const controller = new modelController.modelController();
+const UserController = require('../models/UserController');
+const controller = new UserController.UserController();
 
 controller.init();
 
@@ -28,7 +28,7 @@ router.post('/signUp', async (req, res) => {
   const checkUser = await controller.checkUser(id);       // 회원 중복 확인 변수 true => 중복있음
   console.log("--------------------checkUser : ", await controller.checkUser(id));
   if (await checkUser) {    // 중복이 있다면
-    res.json({'result':'fail'});
+    res.json({'result':'fail'});1
   } else {
     const checkCreate = await controller.createUser(userInfo);
     if (checkCreate) {
@@ -46,7 +46,6 @@ router.get('/login', function(req, res, next) {
 router.post('/login', async (req, res) => {
   const id = req.body.id;
   const password = hashPassword(req.body.password);
-  let userInfo = {id:id, password:password};
 
   const checkLogin = await controller.login(id, password);
   if (await checkLogin) {
