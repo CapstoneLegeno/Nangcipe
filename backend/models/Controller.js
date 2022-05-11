@@ -1,4 +1,4 @@
-// modelController.js
+// Controller.js
 
 // 사용할 DB
 const mysql = require('mysql2/promise');
@@ -7,13 +7,9 @@ const mysql2 = require('mysql2');
 // DB config
 const config = require('./config');
 
-class RecipeController {
+class Controller {
     static connection;
     static pool;
-
-    constructor() {
-        this.init();
-    }
 
     // connect db
     async init() {
@@ -27,8 +23,19 @@ class RecipeController {
         }
     }
 
-
+    // query test
+    async queryTest() {
+        this.connection = await this.pool.getConnection();
+        try {
+            const [data] = await this.connection.query('SELECT * FROM TEST');
+            return data;
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
+    }
 }
 
-exports.RecipeController = RecipeController;
+exports.Controller = Controller;
 

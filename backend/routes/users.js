@@ -6,7 +6,6 @@ const router = express.Router();
 const UserController = require('../models/UserController');
 const controller = new UserController.UserController();
 
-controller.init();
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
@@ -14,7 +13,8 @@ router.get('/', (req, res, next) => {
 })
 
 
-// createUser
+// Signup
+// 회원가입
 router.get('/signUp', function(req, res, next) {
   res.render('users/signUp');
 });
@@ -38,7 +38,8 @@ router.post('/signUp', async (req, res) => {
   }
 })
 
-// login
+// LogIn
+// 로그인
 router.get('/login', function(req, res, next) {
   res.render('users/login');
 });

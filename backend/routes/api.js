@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-const modelController = require('../models/UserController');
-const controller = new modelController.modelController();
+const modelController = require('../models/Controller');
+const controller = new modelController.Controller();
 
 controller.init();
 
@@ -15,9 +15,5 @@ router.get('/test', async function(req, res, next) {
   res.json(await controller.queryTest());
   next();
 });
-
-// router.get('/recipe', async function(req, res, next) {
-//   req.json(await );
-// }
 
 module.exports = router;

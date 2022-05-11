@@ -7,12 +7,13 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
+const recipeRouter = require('./routes/recipe');
 
 const app = express();
 
 // MySQL 연결
-const UserController = require('./models/UserController');
-const controller = new UserController.UserController();
+const modelController = require('./models/Controller');
+const controller = new modelController.Controller();
 
 // DB 초기화
 controller.init();
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
+app.use('/recipe', recipeRouter);
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), () => {

@@ -10,25 +10,14 @@ const config = require('./config');
 class UserController {
     static connection;
     static pool;
-
+    constructor() {
+        this.init();
+    }
     // connect db
     async init() {
         try {
             this.pool = mysql.createPool(config, (err) => { if (err) throw err });
             this.connection = await this.pool.getConnection(async conn => conn);
-        } catch (err) {
-            throw err;
-        } finally {
-            this.connection.release();
-        }
-    }
-
-    // query test
-    async queryTest() {
-        this.connection = await this.pool.getConnection();
-        try {
-            const [data] = await this.connection.query('SELECT * FROM TEST');
-            return data;
         } catch (err) {
             throw err;
         } finally {
@@ -92,5 +81,5 @@ class UserController {
     }
 }
 
-exports.modelController = modelController;
+exports.UserController = UserController;
 
