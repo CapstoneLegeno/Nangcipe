@@ -15,6 +15,12 @@ router.get('/', (req, res, next) => {
 router.get('/search', (req, res, next) => {
     res.render('recipe/search');
 })
+  
+router.post('/search', async (req, res) => {
+    const ingredients = req.body.ingredients;
 
+    const data = await controller.search(ingredients);
+    // res.json(data);
+})
 
 module.exports = router;
