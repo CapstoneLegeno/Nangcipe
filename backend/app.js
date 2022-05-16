@@ -33,7 +33,7 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/recipe', recipeRouter);
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 app.listen(app.get('port'), () => {
   console.log("\n\n" + app.get('port') + " port connecting");
 });
