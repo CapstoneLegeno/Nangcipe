@@ -42,3 +42,12 @@
 
 ![Nangcipe](./Nangcipe.jpeg)
 
+
+
+- 데이터
+
+농식품 빅데이터 거래소 https://kadx.co.kr/product/detail/0c5ec800-4fc2-11eb-8b6e-e776ccea3964
+
+공공데이터포털 http://www.foodsafetykorea.go.kr/api/openApiInfo.do?menu_grp=MENU_GRP31&menu_no=661&show_cnt=10&start_idx=1&svc_no=COOKRCP01
+
+위키백과 https://namu.wiki/w/%ED%95%9C%EA%B5%AD%20%EC%9A%94%EB%A6%AC/%EB%AA%A9%EB%A1%9D
