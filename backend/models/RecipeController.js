@@ -27,31 +27,32 @@ class RecipeController {
         }
     }
 
+    // 레시피 검색 - 재료로 레시피를 조회하는 것
+    // search
     async search(data) {
         console.log("----------START SEARCH----------");
+        let [result] = "";
+
         this.connection = await this.pool.getConnection();
         let sql = "select * from recipes where ";
-        for(let x in data) {
-            sql += "like ingredient = " + "'" + data[x] + "'";
-            if(data[x+1] != null) {
-                sql += " and";
+        if (data.length >= 1) {
+            for(let x in data) {
+                sql += "ingredients like " + "'%" + data[x] + "%' and ";
             }
+            sql = sql.slice(0, -5);
+            sql += ";";
+            try {
+                [result] = await this.connection.query(sql);
+            } catch (err) {
+                throw err;
+            } finally {
+                this.connection.release();
+            }
+        } else {
+            [result] = "재료 데이터를 입력해주세요.";
         }
-        // console.log(sql);
-
-        // const sql = "select id, password from users where id = " + "'" + id + "'" + ' and password = ' + "'" + pw + "'";
-        // try {
-        //     const [data] = await this.connection.query(sql);
-        //     if (data.length) {
-        //         return true;            // 로그인 성공
-        //     } else {
-        //         return false;            // 로그인 실패
-        //     }
-        // } catch (err) {
-        //     throw err;
-        // } finally {
-        //     this.connection.release();
-        // }
+        
+        return result;
     }
 
 

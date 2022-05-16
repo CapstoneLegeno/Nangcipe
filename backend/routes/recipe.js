@@ -1,5 +1,3 @@
-const hashPassword = require('../algirithm/hash').hashPassword;
-
 const express = require('express');
 const router = express.Router();
 
@@ -19,8 +17,7 @@ router.get('/search', (req, res, next) => {
 router.post('/search', async (req, res) => {
     const ingredients = req.body.ingredients;
 
-    const data = await controller.search(ingredients);
-    console.log(data);
+    const [data] = await controller.search(ingredients);
     res.json({data});
 })
 
