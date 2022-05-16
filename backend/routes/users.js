@@ -56,5 +56,16 @@ router.post('/login', async (req, res) => {
   }
 })
 
+router.get('/ingredients', (req, res, next) => {
+  res.render('users/ingredients');
+})
+
+router.post('/ingredients', async (req, res, next) => {
+  const id = req.body.id;
+
+  const [data] = await controller.getIngredients(id);
+  res.json(data);
+})
+
 
 module.exports = router;

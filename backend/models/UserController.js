@@ -28,7 +28,7 @@ class UserController {
     // 회원가입
     // userInfo : 객체타입
     async createUser(userInfo) {
-        console.log("----------STRAT CREATEUSER----------");
+        console.log("----------STRAT CREATEUSER()----------");
         this.connection = await this.pool.getConnection();
         const sql = 'insert into users set?';
         try {
@@ -44,7 +44,7 @@ class UserController {
 
     // 회원 중복 체크
     async checkUser(id) {
-        console.log("----------START CHECKUSER----------");
+        console.log("----------START CHECKUSER()----------");
         this.connection = await this.pool.getConnection();
         const sql = "select id from users where id = " + "'" + id + "'";
         try {
@@ -63,7 +63,7 @@ class UserController {
 
     // 로그인
     async login(id, pw) {
-        console.log("----------START LOGIN----------");
+        console.log("----------START LOGIN()----------");
         this.connection = await this.pool.getConnection();
         const sql = "select id, password from users where id = " + "'" + id + "'" + ' and password = ' + "'" + pw + "'";
         try {
@@ -77,6 +77,27 @@ class UserController {
             throw err;
         } finally {
             this.connection.release();
+        }
+    }
+
+    // getIngredients
+    async getIngredients(id) {
+        console.log("----------START GETINGREDIENTS()----------");
+        let [data] = "";
+        this.connection = await this.pool.getConnection();
+        const sql = "select user_ingredient from user_ingredients where user_id = '" + id + "'";
+        try {
+            [data] = await this.connection.query(sql);
+            
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
+        if ([data].length >= 1) {
+            return data;
+        } else {
+            return {data: "false"};
         }
     }
 }
