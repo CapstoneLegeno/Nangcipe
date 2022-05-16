@@ -55,7 +55,21 @@ class RecipeController {
         return result;
     }
 
+    async foodSearch(food) {
+        console.log("----------START FOODSEARCH()----------");
+        let [result] = "";
 
+        this.connection = await this.pool.getConnection();
+        let sql = "select * from recipes where food_name = '" + food + "'";
+        try {
+            [result] = await this.connection.query(sql);
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
+        return result;
+    }
 }
 
 exports.RecipeController = RecipeController;

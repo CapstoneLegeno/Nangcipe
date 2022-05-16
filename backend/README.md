@@ -13,4 +13,5 @@
 사용자 소유 재료 : /users/ingredients
 {id:xxx}
 
-
+음식 조회 : /recipe/foodsearch
+{food:xxx}

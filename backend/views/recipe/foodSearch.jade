@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Food Search
+    body
+        h1 Food Search
+        h2 ex. 김치찌개
+        form
+            p food : 
+                input(type="text" name="food")
+        button(class='ajaxsend') submit
+        div(class='result')
+
+        script(type='text/javascript').
+            document.querySelector('.ajaxsend').addEventListener('click', () => {
+                const food = document.forms[0].elements[0].value;
+                const inputData = {
+                    food: food,
+                };
+                const url = "http://localhost:3001/recipe/foodsearch";
+                ajax_send(url, inputData);
+
+                function ajax_send(url, inputData) {
+                    var data = JSON.stringify(inputData);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader('content-type', 'application/json');
+                    xhr.send(data);
+                    xhr.addEventListener('load', () => {
+                        const result = JSON.parse(xhr.responseText).data;
+                        document.querySelector(".result").innerHTML= JSON.stringify(result);
+                    });
+                }
+            });
