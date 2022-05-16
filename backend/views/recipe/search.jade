@@ -12,6 +12,7 @@ html(lang="en")
             p ingredieant : 
                 input(type="text" name="ingredients")
         button(class='ajaxsend') submit
+        div(class='result')
 
         script(type='text/javascript').
             document.querySelector('.ajaxsend').addEventListener('click', () => {
@@ -31,6 +32,7 @@ html(lang="en")
                     xhr.addEventListener('load', () => {
                         const result = JSON.parse(xhr.responseText);
                         console.log("--------------------result : ", result);
+                        document.querySelector(".result").innerHTML=result;
                         //- if (result.result === 'success') {
                         //-     alert("로그인 성공");
                         //- } else {

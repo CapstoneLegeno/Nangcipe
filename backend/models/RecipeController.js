@@ -6,7 +6,6 @@ const mysql2 = require('mysql2');
 
 // DB config
 const config = require('./config');
-const { forEach } = require('lodash');
 
 class RecipeController {
     static connection;
@@ -38,7 +37,6 @@ class RecipeController {
                 sql += " and";
             }
         }
-        console.log(sql);
         // console.log(sql);
 
         // const sql = "select id, password from users where id = " + "'" + id + "'" + ' and password = ' + "'" + pw + "'";

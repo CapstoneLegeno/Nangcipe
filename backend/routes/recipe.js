@@ -20,7 +20,8 @@ router.post('/search', async (req, res) => {
     const ingredients = req.body.ingredients;
 
     const data = await controller.search(ingredients);
-    // res.json(data);
+    console.log(data);
+    res.json({data});
 })
 
 module.exports = router;
