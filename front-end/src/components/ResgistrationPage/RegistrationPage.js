@@ -1,37 +1,6 @@
 import React from "react";
+import Registration from "./Registration";
 import "./style.css";
-
-function 재료컴포넌트(props) {
-  return (
-    <div className="regis">
-      <img className="imge" src={props.imgSrc} />
-      <strong className="regisname">{props.name}</strong>
-    </div>
-  );
-}
-
-function Registration(props) {
-  console.log(props);
-  function 재료컴포넌트리스트생성함수(food) {
-    return <재료컴포넌트 name={food.name} imgSrc={food.imgSrc} />;
-  }
-  const 재료컴포넌트리스트 = props.data.map(재료컴포넌트리스트생성함수);
-  return (
-    <>
-      <h2>{props.title}</h2>
-      <div className="registration">
-        {재료컴포넌트리스트}
-        <hr />
-      </div>
-    </>
-  );
-  // return (
-  //     <재료이름과목록이있는컴포넌트 title={재료컴포넌트} data={data}/>
-  //     <재료이름과목록이있는컴포넌트 title={} data={}/>
-  //     <재료이름과목록이있는컴포넌트 title={} data={}/>
-  //     <재료이름과목록이있는컴포넌트 title={} data={}/>
-  //     )
-}
 
 function RagistrationPage() {
   const datas = [
