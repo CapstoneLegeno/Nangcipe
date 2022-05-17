@@ -1,0 +1,59 @@
+/*메인화면 버튼 색상*/
+
+
+/*재료추가 css*/
+.registration{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.regis{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imge{
+    width: 40%;
+}
+
+.regisname{
+    margin: 10px;
+}
+
+
+/*전체레시피*/
+.foodimge{
+    width: 50%;
+    height: 50%;
+}
+
+.allrecipe{
+    display: flex;
+    width: 100%;
+    margin-top: 15%;
+
+}
+
+.foodname{
+    width: 20%;
+    font-size: 30px;
+    margin-left: 2%;
+}
+
+.star{
+    display: flex;
+    
+}
+
+/*즐겨찾기*/
+.favimge{
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    
+}

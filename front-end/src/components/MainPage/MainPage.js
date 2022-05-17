@@ -1,7 +1,7 @@
 import { Route, BrowserRouter as Router, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button, ButtonGroup } from "@material-ui/core";
-import LogoImg from "./LogoImg.png";
+import LogoImg from "../../assets/images/Logo.png";
 
 const Container = styled.div`
   display: flex;
