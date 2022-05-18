@@ -6,7 +6,7 @@
   "author": "seongwon-gitcodes <ysw991106@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "create-react-app": "^5.0.0",
+    "create-react-app": "^5.0.1",
     "react": "^17.0.2"
   }
 }
