@@ -6,6 +6,13 @@ const router = express.Router();
 const UserController = require('../models/UserController');
 const controller = new UserController.UserController();
 
+// 토큰 모듈
+const jwt = require("jsonwebtoken");
+// 토큰 환경변수 모듈
+const dotenv = require("dotenv");
+// 토큰검증 미들웨어
+// const { auth } = require("./autoMiddleware.js");
+
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
@@ -32,7 +39,6 @@ router.post('/signUp', async (req, res) => {
   } else {
     const checkCreate = await controller.createUser(userInfo);
     if (checkCreate) {
-      console.log('checkCreate : success');
       res.json({'result':'ok'});
     }
   }
@@ -50,22 +56,57 @@ router.post('/login', async (req, res) => {
 
   const checkLogin = await controller.login(id, password);
   if (await checkLogin) {
+    // 로그인 성공
+    const key = process.env.SECRET_KEY;
+    let token = "";
+
+    token = jwt.sign(
+      {
+        type: 'JWT',
+        id: id, 
+      },
+      {
+        expiresIn: "30m",
+        issuer: "root"
+      }
+    );
+    console.log("token");
     res.json({'result': "success"});
+    return res.status(200).json({
+      code: 200,
+      message: "token is created",
+      token: token,
+    });
   } else {
     res.json({'result': 'false'});
   }
-})
+});
 
-router.get('/ingredients', (req, res, next) => {
-  res.render('users/ingredients');
-})
 
-router.post('/ingredients', async (req, res, next) => {
+// 사용자의 재료 조회
+router.get('/getingredients', (req, res, next) => {
+  res.render('users/getingredients');
+});
+
+router.post('/getingredients', async (req, res, next) => {
   const id = req.body.id;
 
   const [data] = await controller.getIngredients(id);
   res.json(data);
-})
+});
 
+// 사용자의 재료 삽입
+router.get('/setingredients', (req, res, next) => {
+  res.render('users/setingredients');
+});
+
+router.post('/setingredients', async (req, res, next) => {
+  const user_id = req.body.user_id;
+  const user_ingredient = req.body.user_ingredient;
+  let info = {user_id:user_id, user_ingredient:user_ingredient};
+
+  await controller.setIngredients(info);
+  res.json({'result':'ok'});
+});
 
 module.exports = router;

@@ -100,6 +100,20 @@ class UserController {
             return {data: "false"};
         }
     }
+
+    // setIngredients
+    async setIngredients(info) {
+        console.log("----------START SETINGREDIENTS()----------");
+        this.connection = await this.pool.getConnection();
+        const sql = 'insert into user_ingredients set?';
+        try {
+            await this.connection.query(sql, info);
+        } catch (err) {
+            throw err;
+        } finally {
+            this.connection.release();
+        }
+    }
 }
 
 exports.UserController = UserController;

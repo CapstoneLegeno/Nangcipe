@@ -1,0 +1,41 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title User's ingredients
+    body
+        h1 User's ingredients
+        h2 id와 재료를 입력해주세요
+        form
+            p id : 
+                input(type="text" name="user_id")
+            p ingredients : 
+                input(type="text" name="user_ingredient")
+        button(class='ajaxsend') submit
+        div(class='result')
+
+        script(type='text/javascript').
+            document.querySelector('.ajaxsend').addEventListener('click', () => {
+                const user_id = document.forms[0].elements[0].value;
+                const user_ingredient = document.forms[0].elements[1].value;
+                const inputData = {
+                    user_id: user_id,
+                    user_ingredient: user_ingredient
+                };
+                const url = "http://localhost:3001/users/setingredients";
+                ajax_send(url, inputData);
+
+                function ajax_send(url, inputData) {
+                    var data = JSON.stringify(inputData);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', url);
+                    xhr.setRequestHeader('content-type', 'application/json');
+                    xhr.send(data);
+                    xhr.addEventListener('load', () => {
+                        const result = JSON.parse(xhr.responseText);
+                        document.querySelector(".result").innerHTML= JSON.stringify(result);
+                    });
+                }
+            });
