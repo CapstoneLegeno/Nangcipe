@@ -2,12 +2,6 @@
 
 
 /*재료추가 css*/
-.registration{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
 
 .regis{
     width: 100%;
@@ -15,10 +9,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.imge{
-    width: 40%;
 }
 
 .regisname{
@@ -38,6 +28,9 @@
     margin-top: 15%;
 
 }
+.allrecipe_content{
+    width: 100%;
+}
 
 .foodname{
     width: 20%;
@@ -47,6 +40,9 @@
 
 .star{
     display: flex;
+    width: 100%;
+    height: 100%;
+    margin-left: 5px;
     
 }
 

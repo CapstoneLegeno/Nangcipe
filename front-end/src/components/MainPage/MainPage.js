@@ -66,12 +66,13 @@ export function MainPage() {
       <input
         type={"text"}
         className={"input-sm"}
-        size={"25"}
+        size={"30"}
         onChange={handleChange}
       ></input>
       <br />
-      냉장고 속 방치되어 있는 재료 또는 사용하지 않는 재료들을 등록을 통해
+      <p className="write">냉장고 속 방치되어 있는 재료 또는 사용하지 않는 재료들을 등록을 통해
       사용자에게 레시피를 추천해주는 서비스
+      </p>
     </div>
   );
 }

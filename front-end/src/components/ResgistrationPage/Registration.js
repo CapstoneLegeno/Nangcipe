@@ -1,16 +1,15 @@
 import Iingredients from "./Iingredients";
 
 export default function Registration(props) {
-  console.log(props);
-  function makeIingredients(food) {
-    return <Iingredients name={food.name} imgSrc={food.imgSrc} />;
-  }
-  const IingredientsList = props.data.map(makeIingredients);
+
+
   return (
     <>
       <h2>{props.title}</h2>
       <div className="registration">
-        {IingredientsList}
+        {props.data.map((food) => {
+          return <Iingredients name={food.name} imgSrc={food.imgSrc} onClickItem={props.onClickItem} />;
+        })}
         <hr />
       </div>
     </>

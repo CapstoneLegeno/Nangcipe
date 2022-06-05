@@ -1,24 +1,18 @@
+import styled from "styled-components";
+
+const ActiveStar = styled.div`
+  background: yellow;
+  width: 20%;
+  height: 10px;
+  border: solid 1px;
+`;
+
+const DisActiveStart = styled.div`
+          width: 20%;
+          height: 10px;
+          border: solid 1px;
+`;
+
 export default function StarsComopnent(props) {
-  if (props.star) {
-    return (
-      <div
-        style={{
-          background: "yellow",
-          width: "50px",
-          height: "50px",
-          border: "solid 1px",
-        }}
-      />
-    );
-  } else {
-    return (
-      <div
-        style={{
-          width: "50px",
-          height: "50px",
-          border: "solid 1px",
-        }}
-      />
-    );
-  }
+ return (props.star ? <ActiveStar /> : <DisActiveStart />)
 }
