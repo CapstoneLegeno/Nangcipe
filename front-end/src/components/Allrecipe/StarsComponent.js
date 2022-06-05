@@ -1,18 +1,17 @@
 import styled from "styled-components";
-
-const ActiveStar = styled.div`
-  background: yellow;
-  width: 20%;
-  height: 10px;
-  border: solid 1px;
+import star from '../../assets/images/star.png'
+const ActiveStar = styled.img`
+  width: 10%;
+  height: auto;
 `;
 
-const DisActiveStart = styled.div`
-          width: 20%;
-          height: 10px;
-          border: solid 1px;
+const DisActiveStart = styled.img`
+    width: 10%;
+    height: auto;
+    -webkit-filter: grayscale(100%);
+    filter : gray;
 `;
 
 export default function StarsComopnent(props) {
- return (props.star ? <ActiveStar /> : <DisActiveStart />)
+ return (props.star ? <ActiveStar src={star} /> : <DisActiveStart src={star}/>)
 }
