@@ -6,12 +6,15 @@ import RegistrationPage from "./components/ResgistrationPage/RegistrationPage";
 import Allrecipe from "./components/Allrecipe/Allrecipe";
 import Detailrecipe from "./components/detailrecipe/detailrecipe.js"
 import { MainPage } from "./components/MainPage/MainPage";
+import Login from "./components/Login";
 
 function App() {
   return (
     <Router>
       <Routes>
+
         <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<Login />}/>
         <Route path="/registration" element={<RegistrationPage />} />
         <Route path="/allrecipe" element={<Allrecipe />} />
         <Route path="/allrecipe/:recipe" element={<Detailrecipe />} />

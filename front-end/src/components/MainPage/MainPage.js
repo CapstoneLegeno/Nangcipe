@@ -32,9 +32,11 @@ export function MainPage() {
       </Container>
       <ButtonContainer></ButtonContainer>
       <Container>
-        <Button className="loginbtn" variant="outlined">
+        <Link to={'/login'}>
+        <Button className="loginbtn" variant="outlined" fullWidth>
           로그인
         </Button>
+        </Link>
         <img
           src={LogoImg}
           width="100%"
@@ -42,6 +44,7 @@ export function MainPage() {
           alt="logo-img"
           fullWidth
         />
+
 
         <ButtonGroup orientation="vertical">
           <Link to={"/registration"}>
@@ -61,14 +64,17 @@ export function MainPage() {
               즐겨찾기
             </Button>
           </Link>
+          <Link to={"/"}>
+            <Button className="listbtn" variant="contained" fullWidth>레시피조회</Button>
+          </Link>
         </ButtonGroup>
       </Container>
-      <input
+      {/* <input
         type={"text"}
         className={"input-sm"}
         size={"30"}
         onChange={handleChange}
-      ></input>
+      ></input> */}
       <br />
       <p className="write">냉장고 속 방치되어 있는 재료 또는 사용하지 않는 재료들을 등록을 통해
       사용자에게 레시피를 추천해주는 서비스

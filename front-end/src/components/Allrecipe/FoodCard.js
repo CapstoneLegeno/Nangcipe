@@ -11,7 +11,6 @@ export default function FoodCard(props) {
   return (
     <Link to={`/allrecipe/${props.name}`}>
      <div className="food-card">
-   
         <img className="foodimge" src={props.imgSrc} alt="" />
         <div className="allrecipe_content">
           <strong className="foodname">{props.name}</strong>
@@ -19,7 +18,6 @@ export default function FoodCard(props) {
           {stars.map((star,idx) => <StarsComopnent key={idx} star={star} />)}
           </div>
         </div>
-  
     </div>
     </Link>
   );

@@ -8,7 +8,7 @@ export default function Allrecipe() {
     {
       name: "김치찌개",
       imgSrc:
-        "https://agenery14.com/data/item/1611067564/thumb-6rmA7LCM_1000x1000.jpg",
+        "https://www.ummakitchen.com/wp-content/uploads/2021/07/4fa28c_30d9292ad4e74a11b7cd1c85e21175cfmv2.jpg",
       star: 5,
     },
     {
