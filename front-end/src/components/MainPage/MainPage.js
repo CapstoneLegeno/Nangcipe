@@ -64,7 +64,7 @@ export function MainPage() {
               즐겨찾기
             </Button>
           </Link>
-          <Link to={"/"}>
+          <Link to={"/recipesearch"}>
             <Button className="listbtn" variant="contained" fullWidth>레시피조회</Button>
           </Link>
         </ButtonGroup>
