@@ -2,12 +2,7 @@
 
 
 /*재료추가 css*/
-.registration{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .regis{
     width: 100%;
@@ -17,9 +12,6 @@
     align-items: center;
 }
 
-.imge{
-    width: 40%;
-}
 
 .regisname{
     margin: 10px;
@@ -30,13 +22,6 @@
 .foodimge{
     width: 50%;
     height: 50%;
-}
-
-.allrecipe{
-    display: flex;
-    width: 100%;
-    margin-top: 15%;
-
 }
 
 .foodname{
@@ -57,3 +42,8 @@
     opacity: 1;
     
 }
+
+/* .write{
+    display: flex;
+    text-align: center;
+} */
