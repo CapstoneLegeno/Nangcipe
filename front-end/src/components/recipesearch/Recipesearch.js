@@ -11,22 +11,23 @@ const RecipeList = () => {
     const [lists, setLists] = useState([]);
     // const router = useRouter();
 
-    useEffect(() => {
-        const recipeData = async () => {
-            await axios.post("http://localhost:3001/recipe/search", {
-                ingrdients: ""
-            }).then((res) => {
-                console.log(res)
-            }).catch((err) => {;
-                console.log(err);
-            })
-        };
-        recipeData();
-    }, [])
+    // useEffect(() => {
+    //     const recipeData = async () => {
+    //         await axios.post("http://localhost:3001/recipe/search", {
+    //             ingrdients: ""
+    //         }).then((res) => {
+    //             console.log(res)
+    //         }).catch((err) => {;
+    //             console.log(err);
+    //         })
+    //     };
+    //     recipeData();
+    // }, [])
 
     const onChangeSearch = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
+        console.log(e.target.value);
     };
     
     const onSearch = (e) => {
@@ -35,8 +36,8 @@ const RecipeList = () => {
             axios.post("http://localhost:3001/recipe/search", {
                 ingrdients: ""
             }).then((res) => {
-                console.log(res)
-            }).catch((err) => {;
+                console.log(res);
+            }).catch((err) => {
                 console.log(err);
             })
         } else {
