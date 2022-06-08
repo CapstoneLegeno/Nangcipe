@@ -18,6 +18,7 @@ router.post('/search', async (req, res) => {
     const ingredients = req.body.ingredients;
 
     const [data] = await controller.search(ingredients);
+    res.header("Access-Control-Allow-Origin", "*");
     res.json({data});
 })
 
@@ -29,6 +30,7 @@ router.post('/foodsearch', async (req, res) => {
   const food = req.body.food;
 
   const [data] = await controller.foodSearch(food);
+  res.header("Access-Control-Allow-Origin", "*");
   res.json({data});
 })
 
