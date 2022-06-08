@@ -35,6 +35,7 @@ class RecipeController {
 
         this.connection = await this.pool.getConnection();
         let sql = "select * from recipes where ";
+        console.log(data);
         if (data.length >= 1) {
             for(let x in data) {
                 sql += "ingredients like " + "'%" + data[x] + "%' and ";
@@ -44,7 +45,7 @@ class RecipeController {
             try {
                 [result] = await this.connection.query(sql);
             } catch (err) {
-                throw err;
+                throw err; 
             } finally {
                 this.connection.release();
             }

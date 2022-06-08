@@ -16,7 +16,7 @@ html(lang="en")
 
         script(type='text/javascript').
             document.querySelector('.ajaxsend').addEventListener('click', () => {
-                const ingredients = document.forms[0].elements[0].value.split(', ').sort();
+                const ingredients = document.forms[0].elements[0].value;
                 const inputData = {
                     ingredients: ingredients,
                 };

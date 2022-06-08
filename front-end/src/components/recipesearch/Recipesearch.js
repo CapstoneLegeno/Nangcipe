@@ -27,22 +27,28 @@ const RecipeList = () => {
     const onChangeSearch = (e) => {
         e.preventDefault();
         setSearch(e.target.value);
-        console.log(e.target.value);
     };
     
-    const onSearch = (e) => {
+    const onSearch = async (e) => {
         e.preventDefault();
         if(search === null || search === '') {
-            axios.post("http://localhost:3001/recipe/search", {
-                ingrdients: ""
-            }).then((res) => {
-                console.log(res);
-            }).catch((err) => {
-                console.log(err);
-            })
-        } else {
-            const filterData = lists.filter((row) => row.recipe.include)
+            return 
         }
+            let inputData = search.split(', ').sort();
+
+            const res = await fetch("http://localhost:3001/recipe/search",{
+                method : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ingredients: inputData
+                })
+            })
+            const data = await res.json()
+            console.log(data);
+            // const filterData = lists.filter((row) => row.recipe.include)
+        
     }
     
     
