@@ -182,6 +182,7 @@ function Detailrecipe(){
           {createStart(star).map((star,idx) => <StarsComopnent key={idx} star={star} />)}
           </Star>
           </Header>
+          <button>즐겨찾기</button>
           <Content>
           <h1>재료</h1>
         <Ingredients>
@@ -214,6 +215,7 @@ function Detailrecipe(){
         </Recipe>
          </Content>
         </Container>
+        
     )
 }
 

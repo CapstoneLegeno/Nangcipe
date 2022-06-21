@@ -31,26 +31,28 @@ class RecipeController {
     // search
     async search(data) {
         console.log("----------START SEARCH----------");
-        let [result] = "";
+        let result;
 
         this.connection = await this.pool.getConnection();
         let sql = "select * from recipes where ";
-        console.log(data);
+        
         if (data.length >= 1) {
             for(let x in data) {
                 sql += "ingredients like " + "'%" + data[x] + "%' and ";
             }
             sql = sql.slice(0, -5);
             sql += ";";
+            console.log(sql);
             try {
-                [result] = await this.connection.query(sql);
+                result = await this.connection.query(sql);
+            
             } catch (err) {
                 throw err; 
             } finally {
                 this.connection.release();
             }
         } else {
-            [result] = "재료 데이터를 입력해주세요.";
+            result = "재료 데이터를 입력해주세요.";
         }
         
         return result;

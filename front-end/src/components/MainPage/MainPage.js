@@ -32,11 +32,11 @@ export function MainPage() {
       </Container>
       <ButtonContainer></ButtonContainer>
       <Container>
-        <Link to={'/login'}>
+        {/* <Link to={'/login'}>
         <Button className="loginbtn" variant="outlined" fullWidth>
           로그인
         </Button>
-        </Link>
+        </Link> */}
         <img
           src={LogoImg}
           width="100%"

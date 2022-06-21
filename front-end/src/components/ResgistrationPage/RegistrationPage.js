@@ -3,6 +3,7 @@ import Registration from "./Registration";
 import "./style.css";
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const Result = styled.div`
   width: 100%;
@@ -455,6 +456,10 @@ function RagistrationPage() {
     setList(filterList)
   }
 
+  const temp = () => {
+    alert(`${list.join(' ')}, 재료가 등록되었습니다`)
+  }
+
     return (
       <>
       {datas.map((data) => {
@@ -462,9 +467,12 @@ function RagistrationPage() {
       })}
       <Result>{list.join('       ')}</Result>
       <hr/>
-      <Button className="listbtn" variant="contained" fullWidth>
-              확인
-      </Button>
+      <Link to={'/'}>
+        <Button className="listbtn" onClick={temp} variant="contained" fullWidth>
+                확인
+        </Button>
+      </Link>
+      
       </>
     )
 }
