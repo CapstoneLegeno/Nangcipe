@@ -34,4 +34,44 @@ router.post('/foodsearch', async (req, res) => {
   res.json({data});
 })
 
+router.post('/c/:id', async (req, res) => {
+  const { id } = req.params;
+  const [rows,] = await controller.foodSearchById(id);
+  const { comment, score } = req.body;
+
+  try {
+  
+    if (rows.length > 0) {
+      await controller.writeCommentById(id, comment, score);
+      console.log(`COMMENT : ${comment} SCORE: ${score}`);
+    } else {
+      res.status(500).json({ err: "no recipes found"})
+    }
+  } catch (e) {
+    console.log(e)
+    return res.status(500).json({ err: "Undefined"});
+  }
+
+  res.json({status: 200});
+})
+
+router.get('/c/:id', async (req, res) => {
+  const { id } = req.params;
+  const comments = [];
+  
+  try {
+    const [ rows ] = await controller.getCommentsById(id);
+    console.log(rows);
+    for (const [_id, row] of Object.entries(rows)) {
+      const { id, comment, score } = row;
+      comments.push({ id, comment, score});
+    }
+
+  } catch (e) {
+    console.log(e)
+    return res.status(500).json({ err: 'Undefined'});
+  }
+  res.json(comments);
+});
+
 module.exports = router;

@@ -73,6 +73,50 @@ class RecipeController {
         }
         return result;
     }
+
+  async foodSearchById(foodId) {
+    this.connection = await this.pool.getConnection();
+    const sql = `SELECT * FROM RECIPES WHERE id=?`;
+    var results = [];
+    try {
+      results = await this.connection.query(sql, [foodId]);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.connection.release();
+    }
+    return results;
+  }
+
+  async writeCommentById(foodId, comments, score) {
+    this.connection = await this.pool.getConnection();
+    const sql = `INSERT INTO comments (recipeId, comment, score) VALUES (?, ?, ?)`;
+    const params = [foodId, comments, score];
+    try {
+      console.log (sql, params);
+      await this.connection.query(sql, params);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.connection.release();
+    }
+    return true;
+  }
+
+  async getCommentsById(foodId) {
+    this.connection = await this.pool.getConnection();
+    const sql = 'SELECT * FROM comments WHERE recipeId = ?' ;
+    const params = [foodId];
+    var results = [];
+    try {
+      results = await this.connection.query(sql, [foodId]);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.connection.release();
+    }
+    return results;
+  }
 }
 
 exports.RecipeController = RecipeController;
